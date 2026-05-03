@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Debouncing | Vanilla Edition</title>
+    <style>
+        :root {
+            --bg-color: #F8F9FA;
+            --text-main: #0D0907;
+            --text-secondary: #404040;
+            --accent: #1A2E44;
+            --card-bg: #FFFFFF;
+            --input-border: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 550px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.04em;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .demo-box {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            background: var(--bg-color);
+            transition: all 0.2s ease;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            background: #fff;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            padding: 1.25rem;
+            background: var(--bg-color);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .result-card.highlight {
+            border-color: var(--accent);
+            background: #fff;
+        }
+
+        .result-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-weight: 800;
+            word-break: break-all;
+            min-height: 1.5rem;
+        }
+
+        .rules-box {
+            background: #fff;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem 2rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 3rem;
+        }
+
+        .rules-title {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .rule-item {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>JS Debouncing</h1>
+            <p class="subtitle">Vanilla JavaScript Edition</p>
+        </header>
+
+        <main class="demo-box">
+            <input type="text" id="search" placeholder="Type something quickly...">
+
+            <div class="result-grid">
+                <div class="result-card">
+                    <div class="result-label">Immediate</div>
+                    <div id="normal-text" class="result-value">---</div>
+                </div>
+                <div class="result-card highlight">
+                    <div class="result-label">Debounced</div>
+                    <div id="debounced-text" class="result-value">---</div>
+                </div>
+            </div>
+        </main>
+
+        <section class="rules-box">
+            <h3 class="rules-title">The 3 Golden Rules</h3>
+            <div class="rule-item"><strong>1. Delay the Action:</strong> Don't run the function immediately.</div>
+            <div class="rule-item"><strong>2. Clear the Past:</strong> If the user types again, kill the old timer.</div>
+            <div class="rule-item"><strong>3. Wait for Silence:</strong> Only execute when the user pauses.</div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
