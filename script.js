@@ -1,45 +1,48 @@
+// --- 1. THE DEBOUNCE LOGIC (SIMPLE VERSION) ---
+
 /**
- * Debounce Function
- * 
- * Returns a function that, as long as it continues to be invoked, 
- * will not be triggered. The function will be called after it 
- * stops being called for N milliseconds.
+ * Debounce helps us wait for a "pause" before running a function.
+ * It's like an elevator: it waits for the last person to enter before moving.
  */
-function debounce(func, delay = 1000) {
-    let timer;
+const debounce = (taskToRun, pauseTime = 1000) => {
+    let timer; // This holds our "waiting" timer
 
     return (...args) => {
-        // Clear the previous timer
+        // 1. If the user types again, KILL the old timer immediately!
         clearTimeout(timer);
-        console.log("Timer Reset! Waiting for silence...");
+        console.log("Typing... Timer Reset!");
 
-        // Start a new timer
+        // 2. Start a fresh timer for 1 second (1000ms)
         timer = setTimeout(() => {
-            func.apply(this, args);
-            console.log("Debounced Function Executed!");
-        }, delay);
+            // 3. This only runs if the user hasn't typed for a full second
+            taskToRun(...args);
+            console.log("Pause detected! Running the task...");
+        }, pauseTime);
     };
 }
 
-// --- ELEMENTS ---
-const input = document.getElementById('search');
-const normalDisplay = document.getElementById('normal-text');
-const debouncedDisplay = document.getElementById('debounced-text');
 
-// --- IMPLEMENTATION ---
+// --- SELECTING HTML ELEMENTS ---
+const inputField = document.getElementById('search');
+const normalText = document.getElementById('normal-text');
+const debouncedText = document.getElementById('debounced-text');
 
-// 1. Immediate Update
-input.addEventListener('input', (e) => {
-    const value = e.target.value || "---";
-    normalDisplay.textContent = value;
-    console.log("Normal Update: " + value);
+
+// --- THE "IMMEDIATE" VERSION (RUNS ON EVERY KEY) ---
+inputField.addEventListener('input', (event) => {
+    const userInput = event.target.value || "---";
+    normalText.textContent = userInput;
 });
 
-// 2. Debounced Update
-const updateDebouncedText = debounce((value) => {
-    debouncedDisplay.textContent = value || "---";
+
+// --- THE "DEBOUNCED" VERSION (WAITS FOR A PAUSE) ---
+
+// We wrap our update function inside 'debounce'
+const processDebouncedInput = debounce((text) => {
+    debouncedText.textContent = text || "---";
 }, 1000);
 
-input.addEventListener('input', (e) => {
-    updateDebouncedText(e.target.value);
+// We call the wrapped function instead of the normal one
+inputField.addEventListener('input', (event) => {
+    processDebouncedInput(event.target.value);
 });
