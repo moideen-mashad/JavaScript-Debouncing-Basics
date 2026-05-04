@@ -10,17 +10,17 @@ Instead of running a function every time an event fires (like every single keyst
 
 ---
 
-## 2. The Typing Sequence Analogy ⌨️
+## 2. The Typing Sequence Analogy
 
 Imagine you are typing in a search bar:
 
-1.  **WAIT ⏱️:** User types 'H' — a 1000ms countdown timer begins immediately.
-2.  **RESET 🔄:** User types 'e' before it finishes — the old timer is killed and a **new** one starts.
-3.  **EXECUTE ✅:** User stops typing. After 1000ms of silence, the heavy function finally runs.
+1.  **WAIT:** User types 'H' — a 1000ms countdown timer begins immediately.
+2.  **RESET:** User types 'e' before it finishes — the old timer is killed and a **new** one starts.
+3.  **EXECUTE:** User stops typing. After 1000ms of silence, the heavy function finally runs.
 
 ---
 
-## 3. The Elevator Analogy 🛗
+## 3. The Elevator Analogy 
 
 
 Imagine you are standing in an elevator. The doors are about to close, but then someone else walks in and presses the "Open" button.
