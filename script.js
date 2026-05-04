@@ -1,4 +1,6 @@
-// Debouncing implementation
+/**
+ * Debounce Implementation
+ */
 const debounce = (callback, delay) => {
     let timer;
 
@@ -17,6 +19,8 @@ const inputField = document.getElementById('search');
 const normalText = document.getElementById('normal-text');
 const debouncedText = document.getElementById('debounced-text');
 
+
+// APPLYING THE LOGIC
 
 // A. Immediate Update (Every keystroke)
 inputField.addEventListener('input', (event) => {
