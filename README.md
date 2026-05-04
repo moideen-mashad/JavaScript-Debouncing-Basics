@@ -10,7 +10,18 @@ Instead of running a function every time an event fires (like every single keyst
 
 ---
 
-## 2. The Elevator Analogy 🛗
+## 2. The Typing Sequence Analogy ⌨️
+
+Imagine you are typing in a search bar:
+
+1.  **WAIT ⏱️:** User types 'H' — a 1000ms countdown timer begins immediately.
+2.  **RESET 🔄:** User types 'e' before it finishes — the old timer is killed and a **new** one starts.
+3.  **EXECUTE ✅:** User stops typing. After 1000ms of silence, the heavy function finally runs.
+
+---
+
+## 3. The Elevator Analogy 🛗
+
 
 Imagine you are standing in an elevator. The doors are about to close, but then someone else walks in and presses the "Open" button.
 
@@ -22,7 +33,7 @@ Imagine you are standing in an elevator. The doors are about to close, but then 
 
 ---
 
-## 3. The 3 Golden Rules of Debouncing
+## 4. The 3 Golden Rules of Debouncing
 
 1.  **Delay the Action:** Never run the function the instant the event happens.
 2.  **Clear the Past:** If the event happens again, "kill" the previous timer immediately.
@@ -30,7 +41,7 @@ Imagine you are standing in an elevator. The doors are about to close, but then 
 
 ---
 
-## 4. How it Works (Logic Flow)
+## 5. How it Works (Logic Flow)
 
 ```mermaid
 sequenceDiagram
@@ -57,7 +68,7 @@ sequenceDiagram
 
 ---
 
-## 5. Why do we need this?
+## 6. Why do we need this?
 
 Without debouncing, every single keystroke in a search bar could trigger a database request. If a user types "JavaScript" (10 letters), you would send **10 API requests**!
 
@@ -68,7 +79,7 @@ With debouncing, you only send **1 API request** after they finish typing the wh
 
 ---
 
-## 6. How to test it out:
+## 7. How to test it out:
 
 1. Open `index.html` in your browser.
 2. Open your Developer Tools (**Right Click -> Inspect**).
@@ -77,7 +88,7 @@ With debouncing, you only send **1 API request** after they finish typing the wh
 
 ---
 
-## 7. Beginner-Friendly Resources for Debouncing
+## 8. Beginner-Friendly Resources for Debouncing
 
 Want to master performance optimization and timing functions? Start here:
 
